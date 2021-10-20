@@ -16,12 +16,13 @@ const updateNvim = () => {
       spawn(path.resolve(__dirname, "../scripts/update-nvim.sh"), [], {
         shell: true,
         stdio: "inherit",
-      }).on("exit", () => {
+      }).on("exit", (code) => {
+        if (code === 1) return ora("Nvim update failed").fail();
         ora("Latest Nvim dowloaded and permissions added").succeed();
       });
     });
 
-  return updateNvim
+  return updateNvim;
 };
 
 export default updateNvim;
