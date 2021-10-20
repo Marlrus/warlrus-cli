@@ -17,6 +17,8 @@ err_exit "Error dowloading NVIM"
 
 if test -f ~/nvim.appimage; then
   echo "Checking checksum"
+  # In case checksum changes
+  # CHECKSUM=$(curl https://github.com/neovim/neovim/releases/tag/nightly | rg SHA256 -A 3| rg ".*nvim.appimage$" | awk '{print $1}')
   if [[ $(sha256sum ~/nvim.appimage | awk '{print $1}') != $CHECKSUM ]]; then
     err_exit "Checksum not matching"
   else
