@@ -2,10 +2,17 @@
 
 function err_exit(){
   echo $1
+  echo "Restoring previous NVIM version"
+  cp ~/nvim.appimage-prev ~/nvim.appimage
+  chmod +x ~/nvim.appimage
   exit 1
 }
 
+# Create backup
 if test -f ~/nvim.appimage; then
+  if test -f ~/nvim.appimage-prev; then
+    mv ~/nvim.appimage ~/nvim.appimage-prev
+  fi
   rm ~/nvim.appimage
 fi
 
@@ -25,5 +32,5 @@ if test -f ~/nvim.appimage; then
   chmod +x ~/nvim.appimage
   echo "Execution permissions added to nvim"
 else
-  err_exit "Nvim app image not found" 
+  err_exit "NVIM app image not found" 
 fi
