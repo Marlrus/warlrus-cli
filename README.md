@@ -33,27 +33,27 @@ Installs/updates node version manager to the latest version.
 - NVM Related scripts
 
 - [x] Install or update Nvm
-- [] Run nvm lts
-- [] Change to `nvm-manage`
-- [] `nvm-manage install` Current nvm-install command
-- [] `nvm-manage update-node` Updates current node version to latest, moves -g packages and removes old version.
-- [] `nvm-manage share-packages` Shares -g packages on all versions of node that are installed
+- [ ] Run nvm lts
+- [ ] Change to `nvm-manage`
+- [ ] `nvm-manage install` Current nvm-install command
+- [ ] `nvm-manage update-node` Updates current node version to latest, moves -g packages and removes old version.
+- [ ] `nvm-manage share-packages` Shares -g packages on all versions of node that are installed
 
 - LSP and NPM -g package related scripts
 
-- [] html
-- [] yarn
-- [] pnpm
-- [] jsonls
-- [] typescript
-- [] prettier
-- [] tsserver
-- [] cssls
-- [] graphql
-- [] graphql cli
-- [] graphql@15.5.0
-- [] yamlls
-- [] bashls
-- [] vimls
-- [] efm
-- [] eslint_d
+- [ ] html
+- [ ] yarn
+- [ ] pnpm
+- [ ] jsonls
+- [ ] typescript
+- [ ] prettier
+- [ ] tsserver
+- [ ] cssls
+- [ ] graphql
+- [ ] graphql cli
+- [ ] graphql@15.5.0
+- [ ] yamlls
+- [ ] bashls
+- [ ] vimls
+- [ ] efm
+- [ ] eslint_d
