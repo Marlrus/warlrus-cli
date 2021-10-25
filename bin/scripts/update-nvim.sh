@@ -31,6 +31,14 @@ if test -f ~/nvim.appimage; then
   fi
   chmod +x ~/nvim.appimage
   echo "Execution permissions added to nvim"
+  if ! command grep -qc  '/nvim.appimage' ~/.bashrc; then
+    echo "Appending nvim and vim alias to bash .bashrc"
+    printf '\nalias vim="/home/${USER}/nvim.appimage"\n' >> ~/.bashrc
+    echo 'alias nvim="/home/${USER}/nvim.appimage"' >> ~/.bashrc
+    source ~/.bashrc
+  else
+    echo "alias for nvim appimage found."
+  fi
 else
   err_exit "NVIM app image not found" 
 fi
