@@ -1,10 +1,10 @@
 import { Command } from "commander";
 import { spawnSync } from "child_process";
-import { asyncSpawn } from "../utils/index.js";
+import { asyncSpawn } from "../../utils/index.js";
 import ora from "ora";
 
 const nvmInstall = () => {
-  const updateSystem = new Command("nvm-install");
+  const updateSystem = new Command("install");
   updateSystem.description("Updates/Installs nvm").action(async () => {
     const s0 = ora("Getting latest nvm version url").start();
     const latestUrl = await asyncSpawn("bash", [

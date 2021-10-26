@@ -14,7 +14,7 @@ Personal CLI tool built on node and bash.
 
 ## Scripts
 
-`wrt update-nvm`
+`wrt update-nvim`
 
 Downloads nightly version of neo-vim (appimage) and adds execution permissions. If the github repo for nvim nighly publish has failed, it will keep the latest downloaded version of the neo-vim appimage.
 
@@ -24,9 +24,13 @@ Adds alias to .bashrc if not found on bash profile.
 
 Updates and upgrades system with apt and auto accepts installation.
 
-`wrt nvm-install`
+`wrt nvm-manage`
 
-Installs/updates node version manager to the latest version.
+Manager for NVM package.
+
+`install`
+
+Installs/Updates nvm package to lates version
 
 ## TODO
 
@@ -34,8 +38,8 @@ Installs/updates node version manager to the latest version.
 
 - [x] Install or update Nvm
 - [ ] Run nvm lts
-- [ ] Change to `nvm-manage`
-- [ ] `nvm-manage install` Current nvm-install command
+- [x] Change to `nvm-manage`
+- [x] `nvm-manage install` Current nvm-install command
 - [ ] `nvm-manage update-node` Updates current node version to latest, moves -g packages and removes old version.
 - [ ] `nvm-manage share-packages` Shares -g packages on all versions of node that are installed
 
