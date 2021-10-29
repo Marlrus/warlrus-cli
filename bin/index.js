@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import updateNvim from "./commands/update-nvim.js";
-import updateSystem from "./commands/update-system.js";
+import updateNvim from "./commands/nvim/update-nvim.js";
+import updateSystem from "./commands/system/update-system.js";
 // import test from "./commands/test.js";
-import nvmManage from "./commands/nvm-manager/nvm-manage.js";
+import nvmManage from "./commands/nvm/nvm-manage.js";
 // import inquirerTest from "./commands/inquirer-test.js";
 
 const program = new Command();
