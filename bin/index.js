@@ -3,7 +3,7 @@
 import { Command } from "commander";
 import updateNvim from "./commands/nvim/update-nvim.js";
 import updateSystem from "./commands/system/update-system.js";
-// import test from "./commands/test.js";
+import test from "./commands/test-templates/test.js";
 import nvmManage from "./commands/nvm/nvm-manage.js";
 // import inquirerTest from "./commands/inquirer-test.js";
 
@@ -11,7 +11,7 @@ const program = new Command();
 
 program.addCommand(updateNvim());
 program.addCommand(updateSystem());
-// program.addCommand(test());
+program.addCommand(test());
 program.addCommand(nvmManage());
 // program.addCommand(inquirerTest());
 // Command for updating vim "vim +PlugInstall +qall"

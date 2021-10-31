@@ -15,26 +15,42 @@ const nvmUpdateNode = () => {
     )
     .action(async () => {
       // Get current versions
-      const nvmList = spawnSync(
-        path.resolve(__dirname, "./nvm-scripts/nvm-get-version-list.sh"),
+      const nvmInstalledVersions = spawnSync(
+        path.resolve(__dirname, "./nvm-scripts/nvm-get-installed-list.sh"),
         [],
         { shell: true, stdio: ["inherit", "pipe"] }
       );
-      const nvmListOut = nvmList.stdout
+      const nvmIstalledOut = nvmInstalledVersions.stdout
         .toString()
         .split("\x1B[0m\n")
         .filter((version) => version !== "");
-      console.log(nvmListOut);
-      return;
-      const nodeVersions = await asyncSpawn(
-        "sed",
-        ["-n", "sed -n '/default/q;s/^.*v//p'"],
-        { input: nvmList }
+      console.log(nvmIstalledOut);
+
+      const nvmLtsList = spawnSync(
+        path.resolve(__dirname, "./nvm-scripts/nvm-get-lts-list.sh"),
+        [],
+        { shell: true, stdio: ["inherit", "pipe"] }
       );
-      console.log(nodeVersions);
-      console.log(nodeVersions.split("\n"));
+      const nvmLtsListOut = [
+        ...new Set(
+          nvmLtsList.stdout
+            .toString()
+            .split("\x1B[0m\n")
+            .filter((version) => version !== "")
+            .sort((a, b) => a.split(".")[0] - b.split(".")[0])
+        ),
+      ];
+      console.log(nvmLtsListOut);
 
       // Prompt question of which version to update
+      //Create object array
+      const optionArray = nvmLtsListOut.reduce((acc, version) => {
+        return nvmIstalledOut.includes(version)
+          ? [...acc, { updated: true, version }]
+          : [...acc, { updated: false, version }];
+      }, []);
+
+      console.log(optionArray);
 
       // const s0 = ora("Getting latest nvm version url").start();
       // const latestUrl = await asyncSpawn("bash", [
