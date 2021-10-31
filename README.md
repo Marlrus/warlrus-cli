@@ -34,16 +34,22 @@ Installs/Updates nvm package to lates version
 
 ## TODO
 
-- NVM Related scripts
+- System Commands
+
+- [ ] Change to `system`
+
+- NVM Commands
 
 - [x] Install or update Nvm
-- [ ] Run nvm lts
 - [x] Change to `nvm-manage`
 - [x] `nvm-manage install` Current nvm-install command
+- [ ] `nvm-manage update` can't install wrt without node, change to update as it is more accurate
+- [x] Run nvm lts
+  - [x] nvm is not an executable, find how to run and get output
 - [ ] `nvm-manage update-node` Updates current node version to latest, moves -g packages and removes old version.
 - [ ] `nvm-manage share-packages` Shares -g packages on all versions of node that are installed
 
-- LSP and NPM -g package related scripts
+- NVIM LSP and NPM -g package related Commands
 
 - [ ] html
 - [ ] yarn

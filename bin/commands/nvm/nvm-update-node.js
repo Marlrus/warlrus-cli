@@ -1,8 +1,11 @@
 import { Command } from "commander";
+import path from "path";
 import { spawnSync } from "child_process";
-import { asyncSpawn } from "../../utils/index.js";
+import { asyncSpawn, getDirname } from "../../utils/index.js";
 import inquirer from "inquirer";
 import ora from "ora";
+
+const __dirname = getDirname(import.meta.url);
 
 const nvmUpdateNode = () => {
   const updateNode = new Command("update-node");
@@ -12,10 +15,17 @@ const nvmUpdateNode = () => {
     )
     .action(async () => {
       // Get current versions
-      const nvmList = spawnSync("~/.nvm/nvm.sh", ["list"], {shell: true}); //"nvm ls | sed -n '/default/q;s/^.*v//p'"])
-      console.log(nvmList.stdout.toString());
-      console.log(nvmList.stderr.toString());
-      return
+      const nvmList = spawnSync(
+        path.resolve(__dirname, "./nvm-scripts/nvm-get-version-list.sh"),
+        [],
+        { shell: true, stdio: ["inherit", "pipe"] }
+      );
+      const nvmListOut = nvmList.stdout
+        .toString()
+        .split("\x1B[0m\n")
+        .filter((version) => version !== "");
+      console.log(nvmListOut);
+      return;
       const nodeVersions = await asyncSpawn(
         "sed",
         ["-n", "sed -n '/default/q;s/^.*v//p'"],
