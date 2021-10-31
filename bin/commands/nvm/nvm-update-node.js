@@ -24,8 +24,8 @@ const nvmUpdateNode = () => {
         .toString()
         .split("\x1B[0m\n")
         .filter((version) => version !== "");
-      console.log(nvmIstalledOut);
 
+      // Get latest versions
       const nvmLtsList = spawnSync(
         path.resolve(__dirname, "./nvm-scripts/nvm-get-lts-list.sh"),
         [],
@@ -37,20 +37,29 @@ const nvmUpdateNode = () => {
             .toString()
             .split("\x1B[0m\n")
             .filter((version) => version !== "")
-            .sort((a, b) => a.split(".")[0] - b.split(".")[0])
+            .sort((a, b) => b.split(".")[0] - a.split(".")[0])
         ),
       ];
-      console.log(nvmLtsListOut);
 
-      // Prompt question of which version to update
-      //Create object array
       const optionArray = nvmLtsListOut.reduce((acc, version) => {
         return nvmIstalledOut.includes(version)
           ? [...acc, { updated: true, version }]
           : [...acc, { updated: false, version }];
       }, []);
 
-      console.log(optionArray);
+      const cliSelection = await inquirer.prompt([
+        {
+          type: "list",
+          name: "selectedVersion",
+          message: "Select node version to update",
+          choices: optionArray.map((item) => ({
+            name: item.version,
+            disabled: item.updated ? "Up to date" : false
+          })),
+        },
+      ]);
+
+      console.log(cliSelection);
 
       // const s0 = ora("Getting latest nvm version url").start();
       // const latestUrl = await asyncSpawn("bash", [
