@@ -16,8 +16,8 @@ const nvmUpdateNode = () => {
       // Get current versions
       const spinner = ora("Getting installed node versions").start();
       const nvmInstalledVersions = await asyncSpawn(
-        path.resolve(__dirname, "./nvm-scripts/nvm-get-installed-list.sh"),
-        [],
+        path.resolve(__dirname, "./nvm-scripts/nvm-manager.sh"),
+        ["list-installed"],
       );
       const nvmIstalledOut = nvmInstalledVersions
         .split("\x1B[0m\n")
@@ -26,8 +26,8 @@ const nvmUpdateNode = () => {
       // Get latest versions
       spinner.text = "Getting node latest versions"
       const nvmLtsList = await asyncSpawn(
-        path.resolve(__dirname, "./nvm-scripts/nvm-get-lts-list.sh"),
-        [],
+        path.resolve(__dirname, "./nvm-scripts/nvm-manager.sh"),
+        ["list-lts"],
       );
 
       const nvmLtsListOut = [

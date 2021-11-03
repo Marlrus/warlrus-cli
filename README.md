@@ -51,6 +51,7 @@ Installs/Updates nvm package to lates version
   - [x] Check if version is up to date
   - [x] Output selection list with up to date versions disabled
   - [ ] Update selected version
+- [x] Check if you can run a function from the script to hold all functions in the same bash script
 - [ ] `nvm-manage share-packages` Shares -g packages on all versions of node that are installed
 
 - NVIM LSP and NPM -g package related Commands
