@@ -1,6 +1,5 @@
 import { Command } from "commander";
 import path from "path";
-import { spawnSync } from "child_process";
 import { asyncSpawn, getDirname } from "../../utils/index.js";
 import inquirer from "inquirer";
 import ora from "ora";
@@ -15,26 +14,25 @@ const nvmUpdateNode = () => {
     )
     .action(async () => {
       // Get current versions
-      const nvmInstalledVersions = spawnSync(
+      const spinner = ora("Getting installed node versions").start();
+      const nvmInstalledVersions = await asyncSpawn(
         path.resolve(__dirname, "./nvm-scripts/nvm-get-installed-list.sh"),
         [],
-        { shell: true, stdio: ["inherit", "pipe"] }
       );
-      const nvmIstalledOut = nvmInstalledVersions.stdout
-        .toString()
+      const nvmIstalledOut = nvmInstalledVersions
         .split("\x1B[0m\n")
         .filter((version) => version !== "");
 
       // Get latest versions
-      const nvmLtsList = spawnSync(
+      spinner.text = "Getting node latest versions"
+      const nvmLtsList = await asyncSpawn(
         path.resolve(__dirname, "./nvm-scripts/nvm-get-lts-list.sh"),
         [],
-        { shell: true, stdio: ["inherit", "pipe"] }
       );
+
       const nvmLtsListOut = [
         ...new Set(
-          nvmLtsList.stdout
-            .toString()
+          nvmLtsList
             .split("\x1B[0m\n")
             .filter((version) => version !== "")
             .sort((a, b) => b.split(".")[0] - a.split(".")[0])
@@ -47,6 +45,7 @@ const nvmUpdateNode = () => {
           : [...acc, { updated: false, version }];
       }, []);
 
+      spinner.stop()
       const cliSelection = await inquirer.prompt([
         {
           type: "list",

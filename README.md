@@ -47,8 +47,10 @@ Installs/Updates nvm package to lates version
 - [x] Run nvm lts
   - [x] nvm is not an executable, find how to run and get output
 - [ ] `nvm-manage update-node` Updates current node version to latest, moves -g packages and removes old version.
-  - [ ] Get list of current lts versions
-  - [ ] Check if version is up to date
+  - [x] Get list of current lts versions
+  - [x] Check if version is up to date
+  - [x] Output selection list with up to date versions disabled
+  - [ ] Update selected version
 - [ ] `nvm-manage share-packages` Shares -g packages on all versions of node that are installed
 
 - NVIM LSP and NPM -g package related Commands
