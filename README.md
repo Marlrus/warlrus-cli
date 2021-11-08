@@ -50,7 +50,9 @@ Installs/Updates nvm package to lates version
   - [x] Get list of current lts versions
   - [x] Check if version is up to date
   - [x] Output selection list with up to date versions disabled
-  - [ ] Update selected version
+  - [x] Install selected version
+  - [ ] Pass packages to new version
+  - [ ] Handle multiple x. versions
 - [x] Check if you can run a function from the script to hold all functions in the same bash script
 - [ ] `nvm-manage share-packages` Shares -g packages on all versions of node that are installed
 

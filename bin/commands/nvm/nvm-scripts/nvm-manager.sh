@@ -11,4 +11,8 @@ list-lts(){
   nvm list | sed -n '/lts/p' | sed 's/^.*v//;s/(.*//;s/)//' | awk '{print $1}'
 }
 
-$1
+install-version(){
+  nvm install $1
+}
+
+$1 $2

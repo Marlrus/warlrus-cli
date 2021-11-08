@@ -19,7 +19,7 @@ const nvmUpdateNode = () => {
         path.resolve(__dirname, "./nvm-scripts/nvm-manager.sh"),
         ["list-installed"],
       );
-      const nvmIstalledOut = nvmInstalledVersions
+      const installedVersions = nvmInstalledVersions
         .split("\x1B[0m\n")
         .filter((version) => version !== "");
 
@@ -30,7 +30,7 @@ const nvmUpdateNode = () => {
         ["list-lts"],
       );
 
-      const nvmLtsListOut = [
+      const availableVersions = [
         ...new Set(
           nvmLtsList
             .split("\x1B[0m\n")
@@ -39,14 +39,14 @@ const nvmUpdateNode = () => {
         ),
       ];
 
-      const optionArray = nvmLtsListOut.reduce((acc, version) => {
-        return nvmIstalledOut.includes(version)
+      const optionArray = availableVersions.reduce((acc, version) => {
+        return installedVersions.includes(version)
           ? [...acc, { updated: true, version }]
           : [...acc, { updated: false, version }];
       }, []);
 
       spinner.stop()
-      const cliSelection = await inquirer.prompt([
+      const { selectedVersion } = await inquirer.prompt([
         {
           type: "list",
           name: "selectedVersion",
@@ -58,25 +58,13 @@ const nvmUpdateNode = () => {
         },
       ]);
 
-      console.log(cliSelection);
-
-      // const s0 = ora("Getting latest nvm version url").start();
-      // const latestUrl = await asyncSpawn("bash", [
-      //   "-c",
-      //   "curl https://github.com/nvm-sh/nvm | rg wget | grep -oP 'https.*install.sh' | head -n 1",
-      // ]);
-      // s0.text = "Version accquired";
-      // s0.succeed();
-      // const s1 = ora("Downloading nvm install script").start();
-      // const wgetRes = await asyncSpawn("wget", ["-qO-", latestUrl.trim()]);
-      // s1.text = "Download completed";
-      // s1.succeed();
-      // const s2 = ora("installing and sourcing script").start();
-      // const bashRes = await asyncSpawn("bash", ["-c", wgetRes]);
-      // spawnSync("source", ["~/.bashrc"]);
-      // s2.text = "Nvm installed and sourced";
-      // s2.succeed();
-      // console.log(bashRes.toString());
+      spinner.text = `Installing node version ${selectedVersion} `
+      spinner.start()
+      await asyncSpawn(
+        path.resolve(__dirname, "./nvm-scripts/nvm-manager.sh"),
+        ["install-version", selectedVersion]
+      )
+      spinner.stop()
     });
 
   return updateNode;
