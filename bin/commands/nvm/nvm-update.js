@@ -4,8 +4,8 @@ import { asyncSpawn } from "../../utils/index.js";
 import ora from "ora";
 
 const nvmInstall = () => {
-  const updateSystem = new Command("install");
-  updateSystem.description("Updates/Installs nvm").action(async () => {
+  const updateSystem = new Command("update");
+  updateSystem.description("Updates nvm").action(async () => {
     const s0 = ora("Getting latest nvm version url").start();
     const latestUrl = await asyncSpawn("bash", [
       "-c",
