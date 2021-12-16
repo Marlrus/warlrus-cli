@@ -36,7 +36,7 @@ Installs/Updates nvm package to lates version
 
 - System Commands
 
-- [ ] Change to `system`
+- [x] Change to `system`
 
 - NVM Commands
 

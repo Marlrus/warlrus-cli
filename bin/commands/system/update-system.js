@@ -8,7 +8,7 @@ import chalk from "chalk";
 const __dirname = getDirname(import.meta.url);
 
 const updateSystem = () => {
-  const updateSystem = new Command("update-system");
+  const updateSystem = new Command("update");
   updateSystem
     .description("Updates system with apt update and upgrade")
     .action(() => {
