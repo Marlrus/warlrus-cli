@@ -9,26 +9,31 @@ function err_exit(){
 }
 
 # Create backup
-if test -f ~/nvim.appimage; then
-  if test -f ~/nvim.appimage-prev; then
+if [ -f ~/nvim.appimage ]; then
+  if [ -f ~/nvim.appimage-prev ]; then
     mv ~/nvim.appimage ~/nvim.appimage-prev
   fi
   rm ~/nvim.appimage
 fi
 
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -P ~/ &&
+wget -q --show-progress https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -P ~/ &&
 echo "Nvim latest dowloaded to home directory." ||
 err_exit "Error dowloading NVIM"
 
-if test -f ~/nvim.appimage; then
+wget -q --show-progress https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage.sha256sum -P ~/ &&
+echo "Downloading Checksum" ||
+err_exit "Error dowloading NVIM Checksum"
+
+if [ -f ~/nvim.appimage ] && [ -f ~/nvim.appimage.sha256sum ]; then
   echo "Verifying checksum"
   # In case checksum changes
-  CHECKSUM=$(curl https://github.com/neovim/neovim/releases/tag/nightly | rg SHA256 -A 3| rg ".*nvim.appimage$" | awk '{print $1}')
+  CHECKSUM=$(awk '{print $1}' ~/nvim.appimage.sha256sum)
   if [[ $(sha256sum ~/nvim.appimage | awk '{print $1}') != $CHECKSUM ]]; then
     err_exit "Checksum not matching"
   else
     echo "Checksum matches."
   fi
+  rm ~/nvim.appimage.sha256sum
   chmod +x ~/nvim.appimage
   echo "Execution permissions added to nvim"
   if ! command grep -qc  '/nvim.appimage' ~/.bashrc; then

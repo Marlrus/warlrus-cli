@@ -58,6 +58,8 @@ Installs/Updates nvm package to lates version
 
 - NVIM LSP and NPM -g package related Commands
 
+- [x] Do checksum with download instead of scrapping
+- [x] Only progess output from wget
 - [ ] html
 - [ ] yarn
 - [ ] pnpm
