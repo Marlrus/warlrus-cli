@@ -15,4 +15,19 @@ install-version(){
   nvm install $1
 }
 
-$1 $2
+move-npm-packages(){
+  echo $1
+  echo $2
+  nvm use $1
+  nvm reinstall-packages $2
+}
+
+delete-version(){
+  nvm uninstall $1
+}
+
+$1 $2 $3
+
+echo $1
+echo $2
+echo $3
