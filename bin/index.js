@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import updateNvim from "./commands/nvim/update-nvim.js";
+import nvimManage from "./commands/nvim/nvim-manage.js";
 import systemManage from "./commands/system/system.js";
 // import test from "./commands/test-templates/test.js";
 import nvmManage from "./commands/nvm/nvm-manage.js";
@@ -9,7 +9,7 @@ import nvmManage from "./commands/nvm/nvm-manage.js";
 
 const program = new Command();
 
-program.addCommand(updateNvim());
+program.addCommand(nvimManage());
 program.addCommand(systemManage());
 // program.addCommand(test());
 program.addCommand(nvmManage());

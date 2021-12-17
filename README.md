@@ -12,26 +12,6 @@ Personal CLI tool built on node and bash.
 - run `wrt` for help output
 - Alternatively, run `npx wrt` for help output
 
-## Scripts
-
-`wrt update-nvim`
-
-Downloads nightly version of neo-vim (appimage) and adds execution permissions. If the github repo for nvim nighly publish has failed, it will keep the latest downloaded version of the neo-vim appimage.
-
-Adds alias to .bashrc if not found on bash profile.
-
-`wrt update-system`
-
-Updates and upgrades system with apt and auto accepts installation.
-
-`wrt nvm-manage`
-
-Manager for NVM package.
-
-`install`
-
-Installs/Updates nvm package to lates version
-
 ## TODO
 
 - System Commands
@@ -60,6 +40,7 @@ Installs/Updates nvm package to lates version
 
 - [x] Do checksum with download instead of scrapping
 - [x] Only progess output from wget
+- [x] Change update-nvim to same structure with nvim as base and update secondary
 - [ ] html
 - [ ] yarn
 - [ ] pnpm

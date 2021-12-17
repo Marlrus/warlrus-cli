@@ -8,7 +8,7 @@ import chalk from "chalk";
 const __dirname = getDirname(import.meta.url);
 
 const updateNvim = () => {
-  const updateNvim = new Command("update-nvim");
+  const updateNvim = new Command("update");
   updateNvim
     .description("Updates neovim to latest nightly version")
     .action(() => {
