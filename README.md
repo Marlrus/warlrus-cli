@@ -14,11 +14,11 @@ Personal CLI tool built on node and bash.
 
 ## TODO
 
-- System Commands
+### System Commands
 
 - [x] Change to `system`
 
-- NVM Commands
+### NVM Commands
 
 - [x] Install or update Nvm
 - [x] Change to `nvm-manage`
@@ -36,7 +36,7 @@ Personal CLI tool built on node and bash.
 - [x] Check if you can run a function from the script to hold all functions in the same bash script
 - [ ] `nvm-manage share-packages` Shares -g packages on all versions of node that are installed
 
-- NVIM LSP and NPM -g package related Commands
+### NVIM LSP and NPM -g package related Commands
 
 - [x] Do checksum with download instead of scrapping
 - [x] Only progess output from wget
@@ -57,3 +57,7 @@ Personal CLI tool built on node and bash.
 - [ ] vimls
 - [ ] efm
 - [ ] eslint_d
+
+### Electrum
+
+- [] Download Electrum and verify 3 keys
