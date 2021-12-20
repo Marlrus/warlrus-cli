@@ -61,3 +61,4 @@ Personal CLI tool built on node and bash.
 ### Electrum
 
 - [] Download Electrum and verify 3 keys
+  - [] Download public keys from github
